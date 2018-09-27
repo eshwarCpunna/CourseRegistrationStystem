@@ -20,11 +20,11 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <%= link_to 'Registered Students', '/tutors/registeredStudents', method: :get %> <i class="badge badge-dark"><%= countRegStudents%></i>
+                                <%= link_to 'Registered Students', '/tutors/registeredStudents', method: :get %> <% countRegStudents%>
                             </li>
                             <li>
                                       
-                                <%= link_to 'View Request'.html_safe,   requestsrec_path, method: :get,id: "linktutors" %>  <span class="badge badge-dark"><%= counter%></span>
+                                <%= link_to 'View Request'.html_safe,   requestsrec_path, method: :get,id: "linktutors" %>  <% counter%>
                             </li>
 
                         </ul>

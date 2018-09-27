@@ -30,11 +30,11 @@ class StudentsController < ApplicationController
   def availableCourses
     #used for acceptence rate
     @totalRequest =Request.select(' sum(case when requests.status=0 then 1 else 0 end) as totalAccepted,  100.0*sum(case when requests.status=0 then 1 else 0 end)/count(*) as acceptRat,requests.elective_id as eid').joins("INNER JOIN electives ON
-                                         electives.id = requests.elective_id ").where(:student_id => current_studUser).group(:elective_id);
+                                         electives.id = requests.elective_id ").group(:elective_id);
 
     #Used for  trending feature 
     @reque = Request.select(' count(requests.status) as cstatus,requests.elective_id as eid').joins("INNER JOIN electives ON
-                                        electives.id = requests.elective_id ").where(:student_id => current_studUser).group(:elective_id);#order(:cstatus);
+                                        electives.id = requests.elective_id ").group(:elective_id);#order(:cstatus);
 
   #  puts @req
   #  puts @req.order(:cstatus)
@@ -74,7 +74,7 @@ class StudentsController < ApplicationController
   #status ===0 accepted 1 rejected 2 pending
   #To apply for course
   def requestTutor 
-    @request = Request.new(:student_id => params[:sid], :elective_id => params[:eid], :status => 2, :comments => "")
+    @request = Request.new(:student_id => params[:sid], :elective_id => params[:eid], :status => 2)
 
     # to check if the student has already raised a request
     count_rows= Request.where(:student_id => params[:sid], :elective_id => params[:eid]).count
@@ -153,7 +153,7 @@ class StudentsController < ApplicationController
   # students/profile
   def registeredCourses
      # registe contains students registered courses
-    @registe = Request.select('requests.status,requests.comments,electives.id as eid,electives.semid,electives.ename, tutors.tname, departments.depname').joins("INNER JOIN electives ON
+    @registe = Request.select('requests.status,electives.id as eid,electives.semid,electives.ename, tutors.tname, departments.depname').joins("INNER JOIN electives ON
                                         electives.id = requests.elective_id 
                                         INNER JOIN tutors ON
                                         electives.tutor_id = tutors.id

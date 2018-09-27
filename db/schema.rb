@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_140415) do
 
   create_table "requests", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "status"
-    t.text "comments"
     t.bigint "elective_id"
     t.bigint "student_id"
     t.datetime "created_at", null: false
@@ -51,7 +50,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_140415) do
   end
 
   create_table "semesters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "no_sems"
+    t.string "no_eligibleELectives"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

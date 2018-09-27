@@ -82,7 +82,7 @@
                                                <% if e.eid==course.eid %>
                                                   <% if e.cstatus>5 %>
                                                           <h5 style="color: green">High!</h5>
-                                                  <% elsif e.cstatus>=3 && cstatus <5 %>
+                                                  <% elsif e.cstatus>=3 && e.cstatus <5 %>
                                                            <h5 style="color: red">Moderate!</h5>
                                                   <% else %>
                                                            <h5 style="color: grey">Low!</h5>
