@@ -1,0 +1,77 @@
+<html>
+
+
+<head>
+    <% content_for :title, "Tutor Requests" %>
+      <%= render 'layouts/headertutor' %>
+
+</head>
+
+<body>
+    <% if false %>
+        //This this just comments Below code is for displaying courses and send request
+
+        <% end %>
+
+           
+                        <div class="container" style="width: 900px;">
+                             <% if @reques.size == 0 %>
+
+                    <h1 style="text-align: center;">No pending course registration requests for the <%= currentCourse %> course.</h1>
+
+                    <% else %>
+                        <h1 align="Center">Registration requests </h1>
+                            <table class="table container_table">
+                                <thead>
+                                    <tr>
+                                     
+                                        <th scope="Studname">Student Name</th>
+                                        <th scope="Department">Department</th>
+                                        <th scope="Semester">Semester</th>
+                                        <th scope="CourseName">Course Name </th>
+                                        <th scope="Request Received Time"> Request Received Time</th>
+                                        <th scope="Request" >Request</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% @reques.each do |req| %>
+                                        <tr>
+
+                                            <td>
+                                                <%=req.sname %>
+                                            </td>
+                                            <td>
+                                                <%=req.depname %>
+                                            </td>
+                                            <td>
+                                                <%=req.semid %>
+                                            </td>
+                                            <td>
+                                                <%= currentCourse %>
+
+                                            </td>
+                                            <td>
+                                                <%=req.requestdate %>
+                                                
+                                            </td>
+
+
+                                            
+                                                <td>
+                                                    <%= link_to '<button type="button" class="btn btn-default" style="margin-right:  30px;width="100px;">Accept</button>'.html_safe,tutors_reqAccUpdate_path(action: :patch,:sid => req.sid,:eid => req.eid,:rid =>req.rid),method: :patch, data: {confirm: "Are you sure you want to accpet the registration request?",:class => 'rejectaccept'} %>
+                                                
+                                                    <%= link_to '<button type="button" class="btn btn-default">Reject</button>'.html_safe,tutors_reqRejUpdate_path(action: :patch,:sid => req.sid,:eid => req.eid,:rid =>req.rid),method: :patch, data: {confirm: "Are you sure you want to reject the registration request?",:class => 'rejectrequest'} %>
+                                                </td>
+                                            
+                                        </tr>
+                                        <% end %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <% end %>
+            
+
+</body>
+
+</html>

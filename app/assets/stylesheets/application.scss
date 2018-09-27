@@ -1,0 +1,175 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.navbar-default {
+  background-color: #4e4e4e;
+  border-color: #807d80;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ece8f1;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ece8f1;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ece8f1;
+  background-color: #807d80;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ece8f1;
+  background-color: #807d80;
+}
+.navbar-default .navbar-toggle {
+  border-color: #807d80;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #807d80;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ece8f1;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ece8f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ece8f1;
+    background-color: #807d80;
+  }
+}
+
+
+#error_explanation {
+color: red;
+ul {
+color: red;
+margin: 0 0 30px 0;
+}
+}
+.field_with_errors {
+@extend .has-error;
+.form-control {
+color: $state-danger-text;
+}
+}
+
+
+
+#logo {
+float: left;
+margin-right: 10px;
+font-size: 1.8em;
+color: #ecf0f1;
+letter-spacing: -1px;
+padding-top: 12px;
+text-decoration:none;
+
+}
+
+.navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+    border: 0;
+    /* the rest of your styling */
+}
+
+.container_table {
+    margin-top: 50px;
+     -webkit-box-shadow: 3px 7px 22px -4px rgba(0,0,0,0.5);
+-moz-box-shadow: 3px 7px 22px -4px rgba(0,0,0,0.5);
+box-shadow: 3px 7px 22px -4px rgba(0,0,0,0.5);
+    padding:0 15px 0 15px;
+}
+
+tr td:nth-child(2) { /* I don't think they are 0 based */
+   text-align: centre;
+}
+
+.container-fluid_extra{
+		margin-top: 50px;
+    --webkit-box-shadow: 1px 0px 33px 0px rgba(72,74,70,1);
+    -moz-box-shadow: 1px 0px 33px 0px rgba(72,74,70,1);
+    box-shadow: 1px 0px 33px 0px rgba(72,74,70,1);
+    padding:0 15px 0 15px;
+} 
+
+
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+
+/* Set a style for all buttons */
+.button {
+    background-color: #4e4e4e;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button:hover {
+    opacity: 0.8;
+    background-color: #4e4e4e;
+}
+
+body
+{
+	background-color: #ecedeb;
+}

@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <% content_for :title, "LogIn" %>
+    <%= render 'layouts/headerlogin' %>
+</head>
+
+<body>
+
+    <div class="container-fluid container-fluid_extra" align="centre" style="margin-left: 35%;width: 550px;height: 640px;align-items: center;">
+          <div class="imgcontainer animate">
+              <%= image_tag("student.png", :alt => "Avatar", :class => "avatar") %>
+     
+        </div>
+        <h1 style="text-align: center;">Student Log In</h1>
+          <div class="container-fluid">
+        <%= form_for :login do |f| %>
+            <div class="form-group">
+                <h5><%= f.label :email %></h5>
+                <%= f.text_field :email, autofocus: true , :required => true, :class => 'form-control'%>
+            </div class="form-group">
+            <div class="form-group">
+                <h5><%= f.label :password %></h5>
+                <%= f.password_field :password  , :required => true,:class => 'form-control' %>
+            </div>
+
+            <div class="form-group" align="center">
+
+                <%= f.submit "Log In", :class => 'btn btn-primary button' %>
+
+            </div>
+        <% end %>
+    </div>
+    </div>
+</body>
+
+</html>

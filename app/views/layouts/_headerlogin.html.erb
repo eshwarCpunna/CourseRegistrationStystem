@@ -1,0 +1,26 @@
+<header class="navbar navbar-default">
+    <div class="container ">
+        <a class="navbar-brand" href="#">
+            <%= image_tag("nitc.jpg", :alt => "NITC logo", :class => "img-rounded",  :width => "30", :height => "30", "padding-bottom": "10px") %>
+        </a>
+
+        <%= link_to "Online Elective Registration System ", '#', id: "logo" %>
+            <nav>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <%= link_to "Tutor Login", '/loginTutor' %>
+                    </li>
+                    <li>
+                        <%= link_to "Student Signup", 'student/new' %>
+                    </li>
+                </ul>
+            </nav>
+    </div>
+</header>
+
+<% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %> fade in" id="request">
+        <%= message %>
+    </div>
+<% end %>
+

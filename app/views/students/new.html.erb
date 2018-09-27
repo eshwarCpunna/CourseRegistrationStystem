@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <% content_for :title, "Student" %>
+    <header class="navbar navbar-default">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <%= image_tag("nitc.jpg", :alt => "NITC logo", :class => "img-rounded",  :width => "30", :height => "30", "padding-bottom": "5px") %>
+            </a>
+
+            <%= link_to "Online Elective Registration System ", '#', id: "logo" %>
+                <nav>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <%= link_to "Student Login", '/login' %>
+                        </li>
+                    </ul>
+                </nav>
+        </div>
+    </header>
+
+</head>
+
+<body>
+    <div class="container-fluid container-fluid_extra" style="width:700px;">
+        <h1 align="Center">Student Registration</h1>
+
+        <%= form_for @student do |form| %>
+            <%= render 'layouts/error_messages' %>
+                <div class="form-group">
+                    <h5><%= form.label :'Full Name' %></h5>
+                    <%= form.text_field :sname, :required => true,:class => 'form-control' %>
+                </div>
+
+                <div class="form-group">
+                    <h5><%= form.label :'Joining Year' %></h5>
+                    
+                    <%= form.select( :j_year, Time.zone.now.year.downto(Time.zone.now.year - 6) ,{},{class: 'form-control'} ) %>
+                </div>
+
+                <div class="form-group">
+                    <h5><%= form.label :'Email' %></h5>
+                    <%= form.text_field :email, :required => true, :class => 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <h5> <%= form.label :'Mobile' %></h5>
+                    <%= form.text_field :smobile, :required => true, :class => 'form-control' %>
+                </div>
+                <div class="form-group">
+                    <h5><%= form.label :'Emergency Contact' %></h5>
+                    <%= form.text_field :semobile, :required => true, :class => 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <h5><%= form.label :'Department' %></h5>
+                    <%= form.collection_select :department_id, Department.order(:depname), :id, :depname, {},{class: 'form-control'} %>
+
+                </div>
+
+                <div class="form-group">
+                    <h5><%= form.label :'Semester' %></h5>
+                    <%= form.collection_select :semester_id, Semester.distinct.order(:id), :id, :id,{}, {class: 'form-control'}  %>
+
+                </div>
+                <div class="form-group">
+                    <h5><%= form.label :'Password' %></h5>
+                    <%= form.password_field :password, :required => true, :class => 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <h5><%= form.label :'Confirm Password' %></h5>
+                    <%= form.password_field :password_confirmation , :required => true, :class => 'form-control'%>
+                </div>
+
+                <div class="form-group">
+                    <%= form.submit 'Register', :class => 'btn btn-primary button' %>
+                        <% end %>
+                </div>
+    </div>
+</body>
+
+</html>

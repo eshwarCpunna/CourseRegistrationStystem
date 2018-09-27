@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <% content_for :title, "Student" %>
+    <%= render 'layouts/headerstudent' %>
+
+</head>
+
+<body>
+
+    <% if false %>
+        //This this just comments Below code is for displaying courses and send request
+
+        <% end %>
+
+            <div class="container">
+                <% if @electives.size == 0 %>
+
+                    <h1 style="text-align: center;">No Elective Available For Semesters</h1>
+
+                    <% else %>
+                        <h2 style="text-align: center;"> Available Courses For Semester </h2>
+                        <table class="table container_table">
+                          <h4><span class="glyphicon glyphicon-asterisk"></span> You are eligible to select only <%= @no_of_electives%> electives.</h4>
+                            <thead>
+                                <tr>
+                                    <th scope="Elective ID ">Elective ID</th>
+                                    <th scope="Elective Name">Elective Name</th>
+                                    <th scope="Tutor Name">Tutor Name</th>
+                                    <th scope="Department">Department</th>
+                                    <th scope="Semester">Semester</th>
+                                    <th scope="Credits">Credits</th>
+                                    <th scope="Acceptence Rate">Accpetence Rate </th>
+                                    <th scope="Course Current Pulse">Trend of Student Requests</th>
+                                    <th scope="request">Request</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% @electives.each do |course| %>
+                                    <tr>
+                                        <th style="text-align: center;">
+                                            <%=course.eid %>
+                                        </th>
+                                        <td style="text-align: center;">
+                                            <%=course.ename %>
+                                        </td style="text-align: center;">
+                                        <td style="text-align: center;">
+                                            <%=course.tname %>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <%=course.depname%>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <%=course.semid %>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <%=course.credit %>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <% @totalRequest.each do |e| %>
+                                            
+                                                <% if e.eid==course.eid %>
+                                                      <% if e.acceptRat>60 %>
+                                                          <h6 style="color: green"><%= e.acceptRat %>%</h6>
+                                                      <% else %>
+                                                          <h6 style="color: red"><%= e.acceptRat %>%</h6>
+                                                      <% end -%>
+                                                      <% @flagAcce=1 %> 
+                                                    <% break %>
+                                                <% else -%>
+                                                  <% @flagAcce=0 %>
+                                                <% end -%> 
+                                            <% end -%>
+                                            <% if @flagAcce==0 %>
+                                                <h6 style="color: grey">0.0%</h6>
+                                            <% end -%>
+                                        </td> 
+
+                                        <% @flagAcce=0 %>
+                                        <td style="text-align: center;">
+                                           <% @reque.each do |e| %>
+                                               <% if e.eid==course.eid %>
+                                                  <% if e.cstatus>5 %>
+                                                          <h5 style="color: green">High!</h5>
+                                                  <% elsif e.cstatus>=3 && cstatus <5 %>
+                                                           <h5 style="color: red">Moderate!</h5>
+                                                  <% else %>
+                                                           <h5 style="color: grey">Low!</h5>
+                                                  <%end%>
+                                                  <% @flagAcce=1 %> 
+                                                  <% break %>
+                                               <%else%>
+                                                  <% @flagAcce=0 %>
+                                               <% end -%>
+                                            <% end -%>
+                                              <% if @flagAcce==0 %>
+                                                <h5 style="color: grey">Low!</h5>
+                                            <% end -%>
+    
+
+                                        </td>
+
+          <td>
+                                             <% @statusReg.each do |c| %>
+                                                <% if c.eid==course.eid %>
+                                                     <% if c.status == 0 %>
+                                                           <button type="button" class="btn btn-default button" disabled>Already Registed</button> 
+                                                           <% @flag=1 %>
+                                                            <% break %>
+                                                      <% elsif c.status==2 %>
+                                                           <button type="button" class="btn btn-default button" disabled>Already Requested</button>
+                                                           <% @flag=1 %> 
+                                                           <% break %>
+                                                      <%end %>
+                                                <% end %>
+                                             <%end%>
+                                                     <% if @flag==0 %>
+                                                          <%= link_to '<button type="button" class="btn btn-default button">Request for Course </button>'.html_safe, request_path( :eid => course.eid ,:sid => course.sid ),:method => :post %>
+                                                         <% @flag=1 %>
+                                              
+                                                     <%end%>
+
+
+                                                </td>
+
+
+                                            <% @flag=0 %>
+
+                                    </tr>
+                                    <% end %>
+                                    
+
+                            </tbody>
+
+                        </table>
+                        <% end %>
+                         <div>
+                                      <h6>Acceptence rate is showed based on number of people requesting course.</h6>
+                                       <h6><span style="color: green">Green Color:</span> High</h6>
+                                       <h6><span style="color: red">Red   Color:</span> Moderate</h6>
+                                       <h6><span style="color: gray">Grey  Color:</span> Low </h6>
+                        </div>
+            </div>
+
+</body>
+
+</html>

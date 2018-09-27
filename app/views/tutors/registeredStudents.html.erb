@@ -1,0 +1,44 @@
+<html>
+
+<head>
+	<% content_for :title, "Tutor" %>
+    <%= render 'layouts/headertutor' %>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <% if @registered.size == 0 %>
+
+            <h1 style="text-align: center;">No Students Registered in Course</h1>
+
+            <% else %>
+                <h1 align="Center">Registration Students </h1>
+                <div class="container container_table " " style="width:700px;height: 500px " >
+		<table class="table table-hover container_table ">
+	  		<thead class="thead-light ">
+				<tr>	
+					<th scope="StudentId">Student Id </th>
+					<th scope="Studname ">Student Name</th>
+					<th scope="Department ">Department</th>
+					<th scope="Semester ">Semester</th>
+					<th scope="Course">Course</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @registered.each do |req| %>
+				<tr>
+					<th> <%= req.sid %> </th>
+ 					<th><%=req.sname %></th>
+					<td><%=req.depname %></td>
+					<td><%=req.semid %></td>
+					 <td><%= currentCourse %></td>
+				</tr>	
+				<% end %>
+
+				</tbody>
+			</table>
+		</div>
+<% end %>
+</div>
+</body>
+</html>

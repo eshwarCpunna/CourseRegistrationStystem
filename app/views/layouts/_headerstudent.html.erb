@@ -1,0 +1,53 @@
+<header class="navbar navbar-default">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <%= image_tag("nitc.jpg", :alt => "NITC logo", :class => "img-rounded",  :width => "30", :height => "30", "padding-bottom": "5px") %>
+        </a>
+
+        <%= link_to "Online Elective Registration System ", '#', id: "logo" %>
+            <nav>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+
+                        <% @current_studUser.each do |user| %>
+                            <%=  link_to  "Logged in as #{user.sname.upcase!}", '' %>
+                                <% end %>
+
+                    </li>
+                    <li class="Manage">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Manage <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <%= link_to 'View Status', requeststatus_path, method: :get %>
+                            </li>
+                            <li>
+                                <%= link_to 'Avaiable Courses', availableCourses_path, method: :get %>
+                            </li>
+
+                            <li>
+                                <%= link_to 'Registered Courses', students_profile_path, method: :get %>
+                            </li>
+                            <% @current_studUser.each do |user| %>
+                                <li>
+                                    <%= link_to 'Edit Profile', edit_path(:id => user.id ) %>
+                                </li>
+                                <% end %>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <%= link_to 'Log Out', logout_path(:userType => 0), method: :delete %>
+                    </li>
+                </ul>
+            </nav>
+    </div>
+</header>
+
+<% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %> fade in" id="request">
+        <%= message %>
+    </div>
+<% end %>

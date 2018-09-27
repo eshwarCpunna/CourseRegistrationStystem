@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <% content_for :title, "Student" %>
+    <%= render 'layouts/headeredit' %>
+
+</head>
+
+<div class="container-fluid container-fluid_extra" style="width:700px;">
+    <h1 align="Center">Edit Profile</h1>
+    <%= form_for @student do |form| %>
+        <%= form.hidden_field :id, value: @eid %>
+            <%= render 'layouts/error_messages' %>
+                <div class="form-group">
+                    <h5><%= form.label :'Full Name' %></h5>
+                    <%= form.text_field :sname, :required => true,:class => 'form-control' %>
+                </div>
+
+                <body>
+                    <div class="form-group">
+                        <h5> <%= form.label :'Mobile' %></h5>
+                        <%= form.text_field :smobile, :required => true, :class => 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                        <h5><%= form.label :'Emergency Contact' %></h5>
+                        <%= form.text_field :semobile, :required => true, :class => 'form-control'%>
+                    </div>
+
+                    <div class="form-group">
+                        <h5><%= form.label :'Semester' %></h5>
+                        <%= form.collection_select :semester_id, Semester.order(:id), :id, :id,{}, {class: 'form-control'}  %>
+
+                    </div>
+                    <div class="form-group">
+                        <h5><%= form.label :'Password' %></h5>
+                        <%= form.password_field :password, :required => true, :class => 'form-control'%>
+                    </div>
+
+                    <div class="form-group">
+                        <h5><%= form.label :'Confirm Password' %></h5>
+                        <%= form.password_field :password_confirmation , :required => true, :class => 'form-control'%>
+                    </div>
+
+                    <div class="form-group">
+                        <%= form.submit 'Save Changes', :class => 'btn btn-primary button' %>
+                            <% end %>
+                    </div>
+
+</div>
+</body>
+
+</html>
