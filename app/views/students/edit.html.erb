@@ -5,7 +5,7 @@
     <%= render 'layouts/headeredit' %>
 
 </head>
-
+   <body>
 <div class="container-fluid container-fluid_extra" style="width:700px;">
     <h1 align="Center">Edit Profile</h1>
     <%= form_for @student do |form| %>
@@ -15,8 +15,7 @@
                     <h5><%= form.label :'Full Name' %></h5>
                     <%= form.text_field :sname, :required => true,:class => 'form-control' %>
                 </div>
-••••••••••••
-                <body>
+             
                     <div class="form-group">
                         <h5> <%= form.label :'Mobile' %></h5>
                         <%= form.text_field :smobile, :required => true, :class => 'form-control' %>
@@ -43,8 +42,9 @@
 
                     <div class="form-group">
                         <%= form.submit 'Save Changes', :class => 'btn btn-primary button' %>
-                            <% end %>
+                           
                     </div>
+    <% end %>
 
 </div>
 </body>

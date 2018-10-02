@@ -36,8 +36,7 @@ class StudentsController < ApplicationController
     @reque = Request.select(' count(requests.status) as cstatus,requests.elective_id as eid').joins("INNER JOIN electives ON
                                         electives.id = requests.elective_id ").group(:elective_id);#order(:cstatus);
 
-  #  puts @req
-  #  puts @req.order(:cstatus)
+
 
      @statusReg = Request.select('requests.status,electives.id as eid').joins("INNER JOIN electives ON
                                         electives.id = requests.elective_id 
@@ -58,7 +57,6 @@ class StudentsController < ApplicationController
                                                                             students.semester_id=semesters.id 
                                                                             ").where(id: current_studUser) # id means student id in student table
    
-    #@chek= Department.joins(:students);
 
     @no_of_electives=nil
     @electives.each do |e|
@@ -96,10 +94,7 @@ class StudentsController < ApplicationController
             no_of_electives=e.no_elec.to_i
      end
    #----------------------------------------------------
-   puts "Eshwar"
-   puts no_of_electives
-   puts "Punna"
-   puts count_electiverequests
+  
 
     # 0 ==> no request from student for that course 
     if count_rows==0 && count_electiverequests<no_of_electives
