@@ -100,7 +100,7 @@
 
                                         </td>
 
-          <td>
+          <td><% @flag=0 %>
                                              <% @statusReg.each do |c| %>
                                                 <% if c.eid==course.eid %>
                                                      <% if c.status == 0 %>
@@ -111,7 +111,11 @@
                                                            <button type="button" class="btn btn-default button" disabled>Already Requested</button>
                                                            <% @flag=1 %> 
                                                            <% break %>
-                                                      <%end %>
+                                                      <% else %>
+                                                           <button type="button" class="btn btn-default button" disabled>Already Requested</button>
+                                                           <% @flag=1 %> 
+                                                           <% break %>
+                                                     <% end %>
                                                 <% end %>
                                              <%end%>
                                                      <% if @flag==0 %>

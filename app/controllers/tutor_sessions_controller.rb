@@ -36,7 +36,7 @@ class TutorSessionsController < ApplicationController
     # delete the saved user_id key/value from the cookie:
         session.delete(:user_id)
        session[:user_id] = nil
-       falsh[:success] = "Successfully Logged out!"
+       flash[:success] = "Successfully Logged out!"
    		redirect_to loginTutor_path
   end
   

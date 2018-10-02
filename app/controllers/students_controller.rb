@@ -1,7 +1,7 @@
 class StudentsController < ApplicationController
   # Restrict access so only logged in users can access the secret page:
  # include authorizeHelper , userHelper
-  before_action :authorizeUser, only: [:profile, :requestTutor, :availableCourses, :viewStatus, :registeredCourses, :update, :edit]
+  before_action :authorizeUser, only: [:requestTutor, :availableCourses, :viewStatus, :registeredCourses, :update, :edit]
  
   def new
     @student = Student.new
@@ -18,9 +18,9 @@ class StudentsController < ApplicationController
         render 'new'
       end
   end
- def flag
+  def flag
       @flag=0;
- end
+  end
 
   def flagAcce
       @flagAcce=0;
@@ -96,8 +96,10 @@ class StudentsController < ApplicationController
             no_of_electives=e.no_elec.to_i
      end
    #----------------------------------------------------
-   
-
+   puts "Eshwar"
+   puts no_of_electives
+   puts "Punna"
+   puts count_electiverequests
 
     # 0 ==> no request from student for that course 
     if count_rows==0 && count_electiverequests<no_of_electives
@@ -107,7 +109,7 @@ class StudentsController < ApplicationController
       else
           flash[:notice] = "Course application not successfull."
       end
-    elsif no_of_electives>=count_electiverequests
+    elsif count_rows==0 && count_electiverequests>=no_of_electives
         flash[:danger] = "You reached your limit for elective courses."
         redirect_to '/availableCourses'
     else
@@ -120,7 +122,7 @@ class StudentsController < ApplicationController
   # /requeststatus
   def viewStatus 
     # status contains requests of current user which are in pending and rejected
-    @status = Request.select('requests.status,requests.comments,electives.id as eid,electives.semid,electives.ename, tutors.tname, departments.depname').joins("INNER JOIN electives ON
+    @status = Request.select('requests.status,electives.id as eid,electives.semid,electives.ename, tutors.tname, departments.depname').joins("INNER JOIN electives ON
                                         electives.id = requests.elective_id 
                                         INNER JOIN tutors ON
                                         electives.tutor_id = tutors.id
@@ -142,7 +144,9 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:student][:id])
     if @student.update_attributes(studentedit_params)
       flash[:success] = "Profile Updated."
-        redirect_to '/availableCourses'
+      # Remove all requests related to student from students table.
+      Request.where(:student_id => params[:student][:id]).destroy_all
+      redirect_to '/availableCourses'
     else
       flash[:success] = "Profile Updation Unsuccessfull"
       render '/edit'
@@ -169,15 +173,11 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
-    # that can be submitted by a form to the user model #=> require(:user)
     params.require(:student).permit(:sname, :j_year, :email,:department_id,:semester_id,:smobile,:semobile,:password,:password_confirmation)
   end
 
    def studentedit_params
-    # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
-    # that can be submitted by a form to the user model #=> require(:user)
-    params.require(:student).permit(:sname,:semester_id,:smobile,:semobile,:password,:password_confirmation)
+    params.require(:student).permit(:sname,:semester_id,:smobilstudente,:semobile,:password,:password_confirmation)
   end
 
 
